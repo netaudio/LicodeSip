@@ -21,7 +21,7 @@
   "dependencies": {
     "express": "*",
     "npm": "^6.13.4",
-    "puppeteer": "^1.2.0"
+    "puppeteer": "^3.1.0"
   },
   "author": "cracker0dks",
   "license": "MIT"

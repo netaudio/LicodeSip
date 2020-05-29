@@ -19,9 +19,12 @@ function loadLicodeSipBridge() {
 
   function createNewSipPhone() {
     var phoneLength = sipPhones.length;
+    console.log('phoneLength is:',phoneLength);
     for(var i=0;i<phoneLength;i++) {
       if(sipPhones[i] && !sipPhones[i]["activeCall"]) { //Remove inactive phones
-        myArray.splice(i, 1);
+
+        console.log('sipPhones[i]:',sipPhones[i]);
+        // myArray.splice(i, 1);
         i--;
         phoneLength--;
       }
@@ -48,6 +51,8 @@ function loadLicodeSipBridge() {
       var dtmf_string = "";
       var sessionStream = null;
       coolPhone["sipRoomnumber"] = session["_request"]["headers"]["Roomnumber"] ? session["_request"]["headers"]["Roomnumber"]["0"]["raw"] : null;  //Check if header was set at SIP Server (Check AsteriskConfig/extensions.conf to see how its done)
+      coolPhone["sipRoomnumber"] = 'basicExampleRoom';
+      // coolPhone["sipRoomnumber"] = 'asiproom';
       console.log("sipRoomnumber", coolPhone["sipRoomnumber"]);
 
       if (session.direction === "incoming") { // incoming call here
@@ -95,7 +100,7 @@ function loadLicodeSipBridge() {
           },
           pcConfig: {
             rtcpMuxPolicy: 'negotiate',
-            iceServers : ["stun:stun.l.google.com:19302", "stun:stun1.l.google.com:19302"]
+            iceServers : [{'url':"stun:stun.l.google.com:19302"}, {'url':"stun:stun1.l.google.com:19302"}]
           },
           mediaStream : coolPhone["licodeToSipStream"].stream
         };

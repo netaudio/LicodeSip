@@ -25,6 +25,8 @@ app.use(express.static(__dirname + '/public'));
 
 var privateKey = fs.readFileSync( './cert/key.pem' );
 var certificate = fs.readFileSync( './cert/cert.pem' );
+// var privateKey = fs.readFileSync( './cert/wss.pem' );
+// var certificate = fs.readFileSync( './cert/wss.pem' );
 
 var server = https.createServer({
     key: privateKey,
